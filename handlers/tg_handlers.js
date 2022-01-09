@@ -35,7 +35,7 @@ module.exports = new function () {
             return
         }
 
-        subscribers[user_info.id] = {username: user_info.username}
+        subscribers[user_info.id] = {username: user_info.username || user_info.first_name}
         db.push("subscribers", subscribers)
 
         edit_inline_keyboard_message(ctx, db.get_lang("add_subscriber", user_info.username), true)
