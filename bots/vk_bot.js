@@ -12,25 +12,35 @@ module.exports = function () {
     bot.use(async (ctx, next) => {
         try {
             await next();
+            if (!ctx.ignore_help) await handlers.help(ctx)
         } catch (err) {
             console.error(err);
         }
     });
 
-    bot.event("Помощь", async ctx =>
-        await handlers.help(ctx)
+    bot.event("Помощь", async ctx => {
+            ctx.ignore_help = true
+            await handlers.help(ctx)
+        }
     )
     bot.event("Начать", async ctx => {
+        ctx.ignore_help = true
         await handlers.help(ctx)
     })
 
     bot.event(
         db.get_lang("add_subscriber_btn"),
-        async ctx => await handlers.add_subscriber(ctx)
+        async ctx => {
+            ctx.ignore_help = true
+            await handlers.add_subscriber(ctx)
+        }
     )
     bot.event(
         db.get_lang("remove_subscriber_btn"),
-        async ctx => await handlers.remove_subscriber(ctx)
+        async ctx => {
+            ctx.ignore_help = true
+            await handlers.remove_subscriber(ctx)
+        }
     )
 
     bot.startPolling((err) => {
