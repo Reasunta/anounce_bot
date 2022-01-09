@@ -116,7 +116,7 @@ module.exports = new function () {
 
     this.start = function (ctx) {
         const subscribers = db.get_subscribers()
-        const user_info = ctx.update.callback_query.from
+        const user_info = ctx.update.message.from
         ctx.reply(
             db.get_lang("hello_message", db.get("join_link")),
             subscriber_keyboard(subscribers[user_info.id]))
