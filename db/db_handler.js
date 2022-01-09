@@ -1,5 +1,5 @@
 const JSONdb = require("simple-json-db")
-const util = require('util');
+const util = require('util')
 
 const result = function (db_path) {
     this.db = new JSONdb(db_path)

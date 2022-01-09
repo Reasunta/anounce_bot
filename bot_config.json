@@ -2,5 +2,6 @@
   "token": "",
   "vk_token": "",
   "owner_id": 0,
-  "join_link": ""
+  "join_link": "",
+  "lang": "default"
 }
